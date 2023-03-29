@@ -1,13 +1,17 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+    font-family: 'Poppins', sans-serif;
+}
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    box-shadow: none;
+}
+.main-height {
+    height: calc(100vh - theme('spacing.18'));
+}
+.triangle {
+    @apply relative after:absolute after:top-[25px] after:left-[4px] after:block after:z-10 after:border-l-[7px] after:border-r-[2px] after:border-x-transparent after:border-b-[15px] after:border-b-lightBlue/50 dark:after:border-b-lightColor/90 after:w-0 after:h-0
 }
