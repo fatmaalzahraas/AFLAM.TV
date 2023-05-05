@@ -18,7 +18,7 @@ const Signin = () => {
     setErrors(validation(email, password));
     try {
       await signIn(email, password);
-      navigate("/");
+      navigate("/AFLAM.TV");
       toast.success("Logged In successfully");
     } catch (err) {
       console.log(err.message);
@@ -26,7 +26,7 @@ const Signin = () => {
   };
   useEffect(() => {
     if (user) {
-      navigate("/");
+      navigate("/AFLAM.TV");
     }
   }, [navigate, user]);
   return (
@@ -102,7 +102,7 @@ const Signin = () => {
                     Don't have an account?
                   </span>{" "}
                   {"   "}
-                  <Link to="/register" className="xxs:text-[0.85rem] xs:text[0.85rem]">Sign Up</Link>
+                  <Link to="/AFLAM.TV/register" className="xxs:text-[0.85rem] xs:text[0.85rem]">Sign Up</Link>
                 </p>
               </form>
             </div>

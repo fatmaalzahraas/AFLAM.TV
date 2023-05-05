@@ -20,7 +20,7 @@ const Signup = () => {
     setErrors(validation(email, password));
     try {
       await signUp(email, password);
-      navigate("/home");
+      navigate("/AFLAM.TV/home");
       setEmail("");
       setPassword("");
     } catch (err) {
@@ -65,7 +65,7 @@ const Signup = () => {
   });
   useEffect(() => {
     if (user) {
-      navigate("/");
+      navigate("/AFLAM.TV");
     }
   }, [navigate, user]);
   return (
@@ -153,7 +153,7 @@ const Signup = () => {
                     Already have an account?
                   </span>{" "}
                   {"   "}
-                  <Link to="/login" className="xxs:text-[0.85rem] xs:text[0.85rem]">Sign In</Link>
+                  <Link to="/AFLAM.TV/login" className="xxs:text-[0.85rem] xs:text[0.85rem]">Sign In</Link>
                 </p>
               </form>
             </div>

@@ -66,7 +66,7 @@ const Main = () => {
                         <div className="flex items-center gap-x-4 md:gap-x-5">
                           <button
                             className="bg-main text-lightColor hover:text-grayColor transition px-3 md:px-4 py-2 text-xs md:text-sm rounded"
-                            onClick={() => navigate(`/movie/${movie.id}`)}
+                            onClick={() => navigate(`/AFLAM.TV/movie/${movie.id}`)}
                           >
                             Watch
                           </button>

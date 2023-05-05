@@ -32,7 +32,7 @@ const Navbar = () => {
   const handleLogOut = async () => {
     try {
       await logOut();
-      navigate("/");
+      navigate("/AFLAM.TV");
       toast.success("Logged out successfully");
     } catch (err) {
       console.log(err);
@@ -49,7 +49,7 @@ const Navbar = () => {
         <div className="container flex justify-between items-center px-[10px] sm:px-[15px] md:px-[30px] lg:px-[45px] py-5 mx-auto">
           <h1
             className="xxs:text-xl text-2xl md:text-3xl text-main font-bold italic cursor-pointer"
-            onClick={() => navigate("/home")}
+            onClick={() => navigate("home")}
           >
             AFLAM.TV
           </h1>

@@ -27,7 +27,7 @@ const LazyLoading = lazy(() =>
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route
-      path="/"
+      path="/AFLAM.TV"
       element={
         <Suspense
           fallback={

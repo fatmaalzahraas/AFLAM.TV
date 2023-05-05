@@ -43,7 +43,7 @@ const SingleMovie = ({ movie, styles }) => {
           <motion.i
             whileHover={{ scale: 1.2 }}
             className="opacity-0 group-hover/item:opacity-100 transition-opacity delay-[0.1s]"
-            onClick={() => navigate(`/movie/${movie.id}`)}
+            onClick={() => navigate(`/AFLAM.TV/movie/${movie.id}`)}
           >
             <TfiEye className="cursor-pointer text-lightColor text-[28px]" />
           </motion.i>
