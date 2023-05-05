@@ -15,3 +15,15 @@ input:focus, textarea:focus, select:focus {
 .triangle {
     @apply relative after:absolute after:top-[25px] after:left-[4px] after:block after:z-10 after:border-l-[7px] after:border-r-[2px] after:border-x-transparent after:border-b-[15px] after:border-b-lightBlue/50 dark:after:border-b-lightColor/90 after:w-0 after:h-0
 }
+.height-screen {
+    min-height: calc(100vh - 200px);
+    @media (max-width: 767px) {
+        min-height: calc(100vh - 390px)
+    }
+}
+.searchPage-height {
+    min-height: 100vh ;
+    @media (max-width: 767px) {
+        min-height: calc(100vh - 100px)
+    }
+}
