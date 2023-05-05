@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/AFLAM.TV/static/css/main.35cf61ed.css",
+    "main.js": "/AFLAM.TV/static/js/main.1542f953.js",
+    "static/js/388.73476a21.chunk.js": "/AFLAM.TV/static/js/388.73476a21.chunk.js",
+    "static/js/425.331c638b.chunk.js": "/AFLAM.TV/static/js/425.331c638b.chunk.js",
+    "static/media/aflam02.jpg": "/AFLAM.TV/static/media/aflam02.33770dcdc1f579643862.jpg",
+    "static/media/no-image01.jpg": "/AFLAM.TV/static/media/no-image01.5882c20d3ddf67c36e30.jpg",
+    "static/media/no-image02.jfif": "/AFLAM.TV/static/media/no-image02.e2d64d4bdfa275fae358.jfif",
+    "index.html": "/AFLAM.TV/index.html",
+    "main.35cf61ed.css.map": "/AFLAM.TV/static/css/main.35cf61ed.css.map",
+    "main.1542f953.js.map": "/AFLAM.TV/static/js/main.1542f953.js.map",
+    "388.73476a21.chunk.js.map": "/AFLAM.TV/static/js/388.73476a21.chunk.js.map",
+    "425.331c638b.chunk.js.map": "/AFLAM.TV/static/js/425.331c638b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.35cf61ed.css",
+    "static/js/main.1542f953.js"
+  ]
+}
