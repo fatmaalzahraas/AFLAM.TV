@@ -76,7 +76,7 @@ const MyAccount = () => {
                             </h3>
                             <button
                               className="bg-main px-3 py-1 text-lightColor font-medium rounded text-[0.9rem] mt-3"
-                              onClick={() => navigate(`/movie/${movie?.id}`)}
+                              onClick={() => navigate(`/AFLAM.TV/movie/${movie?.id}`)}
                             >
                               Watch
                             </button>
