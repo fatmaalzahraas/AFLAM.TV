@@ -41,13 +41,13 @@ const Signin = () => {
         <div className="absolute top-[50%] translate-y-[-50%] z-40 w-full">
           <div className=" max-w-[450px] min-h-[600px] mx-auto text-lightColor bg-darkBlue/80 xxs:h-[460px]">
             <div className="max-w-[300px] xxs:max-w-[250px] mx-auto py-14">
-              <h2 className="text-[1.5rem] font-bold">Sign In</h2>
+              <h2 className="text-[1.2rem] sm:text-[1.5rem] font-bold">Sign In</h2>
               <form
                 className="flex flex-col w-full py-4 xxs:py-2"
                 onSubmit={handleSubmit}
               >
                 <input
-                  className="py-3 my-2 px-1 rounded  bg-lightColor text-darkBlue"
+                  className="py-2 sm:py-3 my-2 px-1 rounded  bg-lightColor text-darkBlue"
                   type="email"
                   placeholder="Email"
                   autoComplete="email"
@@ -61,7 +61,7 @@ const Signin = () => {
                 )}
                 <div className="relative w-full">
                   <input
-                    className="py-3 mt-2 px-1 rounded bg-lightColor text-darkBlue w-full"
+                    className="py-2 sm:py-3 mt-2 px-1 rounded bg-lightColor text-darkBlue w-full"
                     type={showPass ? "text" : "password"}
                     maxLength={25}
                     placeholder="Password"
@@ -88,21 +88,21 @@ const Signin = () => {
                     {errors.password}
                   </span>
                 )}
-                <button className="bg-main py-3 my-6 rounded font-bold">
+                <button className="bg-main py-2 sm:py-3 my-6 rounded font-bold">
                   Sign In
                 </button>
                 <div className="flex justify-between items-center text-[0.9rem] text-gray-500">
                   <p>
                     <input type="checkbox" className="mr-1" /> Remember me
                   </p>
-                  <p>Need Help?</p>
+                  <p className="xxs:text-[0.85rem] xs:text-[0.85rem]">Need Help?</p>
                 </div>
                 <p className="py-8">
-                  <span className="text-gray-500 text-[0.9rem]">
+                  <span className="text-gray-500 text-[0.85rem] sm:text-[0.9rem]">
                     Don't have an account?
                   </span>{" "}
                   {"   "}
-                  <Link to="/register">Sign Up</Link>
+                  <Link to="/register" className="xxs:text-[0.85rem] xs:text[0.85rem]">Sign Up</Link>
                 </p>
               </form>
             </div>
