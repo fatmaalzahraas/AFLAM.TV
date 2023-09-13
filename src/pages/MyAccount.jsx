@@ -7,25 +7,26 @@ import Preloader from "../components/Preloader";
 import { images } from "../api";
 import { useNavigate } from "react-router-dom";
 import PageTitle from "../components/PageTitle";
+import NoImage from '../assets/no-image01.jpg'
 const MyAccount = () => {
   const { user } = UserAuth();
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
-    setLoading(true);
-    try {
-      const getData = async () => {
-        setLoading(false);
+    const getData = async () => {
+      setLoading(true)
+      try {
         const docSnap = await getDoc(doc(db, "users", `${user?.email}`));
         const moviesData = await docSnap.data().savedMovies;
         setMovies(moviesData);
-      };
-      getData();
-    } catch (err) {
-      setLoading(false);
-      console.log(err.message);
+        setLoading(false)
+      } catch (err) {
+        setLoading(false);
+        console.log(err.message);
+      }
     }
+    getData();
   }, [user?.email]);
   const movieRef = doc(db, "users", `${user?.email}`);
   const deleteMovie = async (mId) => {
@@ -67,7 +68,7 @@ const MyAccount = () => {
                         <div className="w-full h-full">
                           <img
                             className="w-full  object-cover rounded-t h-[210px]"
-                            src={`${images}original/${movie?.img}`}
+                            src={movie?.img ? `${images}original/${movie.img}` : NoImage}
                             alt={movie?.title}
                           />
                           <div className=" mt-4 text-center px-2">
@@ -76,7 +77,7 @@ const MyAccount = () => {
                             </h3>
                             <button
                               className="bg-main px-3 py-1 text-lightColor font-medium rounded text-[0.9rem] mt-3"
-                              onClick={() => navigate(`/AFLAM.TV/movie/${movie?.id}`)}
+                              onClick={() => navigate(`/movie/${movie?.id}`)}
                             >
                               Watch
                             </button>

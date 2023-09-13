@@ -18,15 +18,18 @@ const Signin = () => {
     setErrors(validation(email, password));
     try {
       await signIn(email, password);
-      navigate("/AFLAM.TV");
+      navigate("/");
       toast.success("Logged In successfully");
     } catch (err) {
       console.log(err.message);
+      toast.error('Incorrect User Account')
     }
+    setEmail('');
+    setPassword('')
   };
   useEffect(() => {
     if (user) {
-      navigate("/AFLAM.TV");
+      navigate("/");
     }
   }, [navigate, user]);
   return (
@@ -102,7 +105,7 @@ const Signin = () => {
                     Don't have an account?
                   </span>{" "}
                   {"   "}
-                  <Link to="/AFLAM.TV/register" className="xxs:text-[0.85rem] xs:text[0.85rem]">Sign Up</Link>
+                  <Link to="/register" className="xxs:text-[0.85rem] xs:text[0.85rem]">Sign Up</Link>
                 </p>
               </form>
             </div>

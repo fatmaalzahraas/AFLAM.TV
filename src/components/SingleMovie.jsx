@@ -6,7 +6,11 @@ import { images } from "../api";
 import { useNavigate } from "react-router-dom";
 import NoImage from "../assets/no-image01.jpg";
 import SavedMovie from "./SavedMovie";
+import { UserAuth } from "../context/authContext";
+import useFavoriteMovie from "../custom-hooks/useFavoriteMovie";
 const SingleMovie = ({ movie, styles }) => {
+  const {favoriteMovie} = useFavoriteMovie(movie)
+  const { user } = UserAuth();
   const { like, myFavorites } = SavedMovie();
   const [isHover, setIsHover] = useState(false);
   const navigate = useNavigate();
@@ -43,7 +47,7 @@ const SingleMovie = ({ movie, styles }) => {
           <motion.i
             whileHover={{ scale: 1.2 }}
             className="opacity-0 group-hover/item:opacity-100 transition-opacity delay-[0.1s]"
-            onClick={() => navigate(`/AFLAM.TV/movie/${movie.id}`)}
+            onClick={() => navigate(`/movie/${movie.id}`)}
           >
             <TfiEye className="cursor-pointer text-lightColor text-[28px]" />
           </motion.i>
@@ -52,7 +56,7 @@ const SingleMovie = ({ movie, styles }) => {
             className="opacity-0 group-hover/item:opacity-100 cursor-pointer text-[28px] transition-opacity delay-[0.1s]"
             onClick={() => myFavorites(movie)}
           >
-            {like ? (
+            {like || favoriteMovie ? (
               <MdFavorite className="text-main" />
             ) : (
               <MdFavoriteBorder className="text-lightColor" />

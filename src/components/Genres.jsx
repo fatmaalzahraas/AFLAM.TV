@@ -27,10 +27,10 @@ const Genres = ({ genres, setGenres, selectedGenres, setSelectedGenres }) => {
       <div className="container mx-auto px-[15px] py-5">
         <div className="">
           <ul className="flex items-center gap-x-[0.7rem] flex-wrap">
-            {selectedGenres?.map((genre) => {
+            {selectedGenres?.map((genre, idx) => {
               return (
                 <li
-                  key={genre.id}
+                  key={`${genre.id}-${idx}`}
                   className="mb-[0.8rem] xxs:mb-[0.5rem] bg-lightBlue text-lightColor font-semibold dark:text-darkBlue xxs:text-[0.7rem] text-[0.9rem] xxs:px-[0.4rem] px-[0.6rem] xxs:py-[0.2rem] py-[0.3rem] rounded-[20px] "
                 >
                   {genre.name}{" "}
@@ -43,9 +43,9 @@ const Genres = ({ genres, setGenres, selectedGenres, setSelectedGenres }) => {
                 </li>
               );
             })}
-            {genres?.map((genre) => (
+            {genres?.map((genre, idx) => (
               <li
-                key={genre.id}
+                key={`${genre.id}-${idx}`}
                 className="mb-[0.8rem] xxs:mb-[0.5rem] bg-darkBlue dark:bg-lightColor text-lightColor xxs:text-[0.8rem] dark:text-darkBlue cursor-pointer xxs:px-[0.6rem] xxs:py-[0.3rem] px-[0.7rem] py-[0.5rem] rounded-[20px] font-medium"
                 onClick={() => {
                   handleSelectedGenres(genre);

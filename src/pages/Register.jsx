@@ -6,6 +6,8 @@ import zxcvbn from "zxcvbn";
 import validation from "../validation";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import PageTitle from "../components/PageTitle";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../firebase";
 const Signup = () => {
   const { user, signUp } = UserAuth();
   const [email, setEmail] = useState("");
@@ -19,10 +21,13 @@ const Signup = () => {
     e.preventDefault();
     setErrors(validation(email, password));
     try {
-      await signUp(email, password);
-      navigate("/AFLAM.TV/home");
-      setEmail("");
-      setPassword("");
+        await signUp(email, password);
+        await setDoc(doc(db, 'users', email), {
+          savedMovies: []
+      })
+        navigate("/");
+        setEmail("");
+        setPassword(""); 
     } catch (err) {
       console.log(err.message);
     }
@@ -65,7 +70,7 @@ const Signup = () => {
   });
   useEffect(() => {
     if (user) {
-      navigate("/AFLAM.TV");
+      navigate("/");
     }
   }, [navigate, user]);
   return (
@@ -153,7 +158,7 @@ const Signup = () => {
                     Already have an account?
                   </span>{" "}
                   {"   "}
-                  <Link to="/AFLAM.TV/login" className="xxs:text-[0.85rem] xs:text[0.85rem]">Sign In</Link>
+                  <Link to="/login" className="xxs:text-[0.85rem] xs:text[0.85rem]">Sign In</Link>
                 </p>
               </form>
             </div>

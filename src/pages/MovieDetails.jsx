@@ -9,12 +9,14 @@ import NotFound from "../assets/no-image02.jfif";
 import MoviesTrailor from "../components/MoviesTrailor";
 import Preloader from "../components/Preloader";
 import SavedMovie from "../components/SavedMovie";
+import useFavoriteMovie from "../custom-hooks/useFavoriteMovie";
 const MovieDetails = () => {
-  const { like, myFavorites, saved } = SavedMovie();
+  const { like, myFavorites } = SavedMovie();
   const [movie, setMovie] = useState({});
   const [loading, setLoading] = useState(false);
   const [visible, setVisible] = useState(false);
   const { id } = useParams();
+  const {favoriteMovie} = useFavoriteMovie(movie)
   const fetchMovie = useCallback(async () => {
     setLoading(true);
     try {
@@ -145,7 +147,7 @@ const MovieDetails = () => {
                     >
                       <MdFavorite
                         className={
-                          like
+                          like || favoriteMovie
                             ? "text-main"
                             : "text-lightColor  hover:text-main/75  transition"
                         }

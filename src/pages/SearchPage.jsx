@@ -4,7 +4,7 @@ import axios, { API_KEY } from "../api";
 import SingleMovie from "../components/SingleMovie";
 import Pagination from "../components/Pagination";
 import PageTitle from "../components/PageTitle";
-import Preloader from "../components/Preloader";
+import LoadingSkeleton from "../components/LoadingSkeleton";
 const SearchPage = () => {
   const { search } = useLocation();
   const searchTerm = search.slice(3);
@@ -33,11 +33,8 @@ const SearchPage = () => {
     <PageTitle title="Search any movie you want">
       <div className="w-full bg-lightColor dark:bg-darkBlue searchPage-height">
         <div className="container px-[15px] py-4 mx-auto">
-          {loading ? (
-            <Preloader styles="justify-center mt-[8rem]" />
-          ) : (
             <div className="grid xxs:justify-items-center xxs:grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-y-[1.2rem] xs:gap-x-[1.5rem] xxs:gap-x-[1.1rem] mb-[1.3rem] mt-[1.3rem]">
-              {movies.length === 0 ? (
+              { loading ? [...Array(20).keys()].map(i => <LoadingSkeleton key={i} />) : movies.length === 0 ? (
                 <div className="w-full col-span-full flex justify-center mt-[3rem]">
                   <h2 className="text-darkBlue dark:text-lightColor text-[1.2rem] font-semibold">
                     Sorry, there are no results here. Please try again using
@@ -54,7 +51,7 @@ const SearchPage = () => {
                 ))
               )}
             </div>
-          )}
+          
         </div>
       </div>
       {movies.length > 0 && totalPages > 1 && (

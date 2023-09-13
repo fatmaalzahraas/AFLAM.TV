@@ -42,6 +42,12 @@ module.exports = {
         "35%": { height: "19px", transform: "scaleX(1)", borderRadius: "50%" },
         "100%": { top: "0" },
       },
+      pulse: {
+        "0%, 100% " :{
+          opacity: 1
+        },
+        "50%": {opacity: 0.4}
+      }
     },
   },
   plugins: [],

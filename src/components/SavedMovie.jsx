@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { db } from "../firebase";
-import { doc, updateDoc, arrayUnion } from "firebase/firestore";
+import { doc, updateDoc, arrayUnion} from "firebase/firestore";
 import { UserAuth } from "../context/authContext";
 import { toast } from "react-toastify";
 const SavedMovie = () => {
@@ -21,6 +21,6 @@ const SavedMovie = () => {
       toast.info("Please log in first to save a movie");
     }
   };
-  return { like, myFavorites };
+  return { like, setLike, myFavorites };
 };
 export default SavedMovie;

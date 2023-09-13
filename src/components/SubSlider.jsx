@@ -1,28 +1,25 @@
-import { useEffect, useState } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import axios, { API_KEY } from "../api";
 import { Navigation, Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
-import SingleMovie from "./SingleMovie";
 import { BsCameraReelsFill } from "react-icons/bs";
 import NavigationBtns from "./NavigationBtns";
-import Preloader from "./Preloader";
+import { wait } from "../App";
+import LoadingSkeleton from "./LoadingSkeleton";
+const SingleMovie = lazy(() => wait(1500).then(() => import("./SingleMovie")))
 const SubSlider = ({ title, url }) => {
   const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [isEnd, setIsEnd] = useState(false);
   const [isBegin, setIsBegin] = useState(true);
   useEffect(() => {
-    setLoading(true);
     axios
       .get(`movie/${url}?api_key=${API_KEY}&language=en-US&page=1`)
       .then((res) => {
         setMovies(res.data.results);
-        setLoading(false);
       })
       .catch((err) => {
-        setLoading(false);
         console.log(err.message);
       });
   }, [url]);
@@ -76,19 +73,22 @@ const SubSlider = ({ title, url }) => {
               },
             }}
           >
-            {loading ? (
-              <Preloader styles="justify-center mt-[3rem] mb-[1.5rem]" />
-            ) : (
+            
               <div>
+              
+
                 {movies?.map((item) => {
                   return (
                     <SwiperSlide key={item.id}>
-                      <SingleMovie movie={item} />
-                    </SwiperSlide>
+                      <Suspense fallback={<LoadingSkeleton />}>
+                        <SingleMovie movie={item}/>
+                      </Suspense>
+                    </SwiperSlide>  
                   );
                 })}
+                
               </div>
-            )}
+             
             <NavigationBtns start={isBegin} end={isEnd} />
           </Swiper>
         </div>

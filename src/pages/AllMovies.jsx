@@ -1,19 +1,18 @@
 import { useEffect, useState, useCallback, memo } from "react";
 import Genres from "../components/Genres";
-import SingleMovie from "../components/SingleMovie";
 import axios, { API_KEY } from "../api";
 import Pagination from "../components/Pagination";
 import PageTitle from "../components/PageTitle";
-import Preloader from "../components/Preloader";
-
+import LoadingSkeleton from "../components/LoadingSkeleton";
+import SingleMovie from "../components/SingleMovie";
 const AllMovies = () => {
   const [genres, setGenres] = useState([]);
   const [movies, setMovies] = useState([]);
   const [selectedGenres, setSelectedGenres] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-  const [loading, setLoading] = useState(false);
   const [err, setErr] = useState(false);
+  const [loading, setLoading] = useState(false);
   const genresIDs = (specifiedGenres) => {
     if (specifiedGenres.length < 1) {
       return "";
@@ -23,18 +22,19 @@ const AllMovies = () => {
     }
   };
   const genresIds = genresIDs(selectedGenres);
+
   const fetchMovies = useCallback(async () => {
-    setLoading(true);
+    setLoading(true)
     try {
       const { data } = await axios.get(
         `discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${currentPage}&with_genres=${genresIds}`
       );
       setMovies(data?.results);
       setTotalPages(data?.total_pages);
-      setLoading(false);
+      setLoading(false)
     } catch (error) {
-      setLoading(false);
       setErr(true);
+      setLoading(false)
       console.log(error);
     }
   }, [genresIds, currentPage]);
@@ -62,27 +62,25 @@ const AllMovies = () => {
           />
           <div className="w-full bg-lightColor dark:bg-darkBlue height-screen">
             <div className="container px-[15px] py-4 mx-auto">
-              {loading ? (
-                <Preloader styles="justify-center mt-[3rem]" />
-              ) : (
-                <div className="grid xxs:justify-items-center xxs:grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-y-[1.2rem] xs:gap-x-[1.5rem] xxs:gap-x-[1.1rem] mb-[1.3rem]">
-                  {movies.length === 0 ? (
+              <div className="grid xxs:justify-items-center xxs:grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-y-[1.2rem] xs:gap-x-[1.5rem] xxs:gap-x-[1.1rem] mb-[1.3rem]">
+                
+                  {loading? [...Array(20).keys()].map(i => <LoadingSkeleton key={i} />) :   movies.length === 0 ? (
                     <div className="w-full col-span-full flex justify-center mt-[3rem]">
                       <h2 className="text-darkBlue dark:text-lightColor text-[1.2rem] font-semibold">
                         Sorry, there are no results here.
                       </h2>
                     </div>
                   ) : (
-                    movies.map((movie) => (
+                    movies?.map((movie, idx) => (
                       <SingleMovie
                         movie={movie}
                         styles="h-90 xxs:w-[138px] w-[190px] md:w-[228px] lg:w-[240px]"
-                        key={movie.id}
+                        key={`${movie.id}-${idx}`}
                       />
                     ))
                   )}
-                </div>
-              )}
+                
+              </div>
             </div>
           </div>
           {movies.length > 0 && totalPages > 1 && (
