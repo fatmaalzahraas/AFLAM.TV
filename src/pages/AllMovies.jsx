@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback, memo } from "react";
+import { useEffect, useState } from "react";
 import Genres from "../components/Genres";
 import axios, { API_KEY } from "../api";
 import Pagination from "../components/Pagination";
@@ -22,25 +22,24 @@ const AllMovies = () => {
     }
   };
   const genresIds = genresIDs(selectedGenres);
-
-  const fetchMovies = useCallback(async () => {
-    setLoading(true)
-    try {
-      const { data } = await axios.get(
-        `discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${currentPage}&with_genres=${genresIds}`
-      );
-      setMovies(data?.results);
-      setTotalPages(data?.total_pages);
-      setLoading(false)
-    } catch (error) {
-      setErr(true);
-      setLoading(false)
-      console.log(error);
-    }
-  }, [genresIds, currentPage]);
   useEffect(() => {
-    fetchMovies();
-  }, [fetchMovies]);
+    const fetchMovies = async () => {
+      setLoading(true)
+      try {
+        const { data } = await axios.get(
+          `discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${currentPage}&with_genres=${genresIds}`
+        );
+        setMovies(data?.results);
+        setTotalPages(data?.total_pages);
+        setLoading(false)
+      } catch (error) {
+        setErr(true);
+        setLoading(false)
+        console.log(error);
+      }
+    }
+    fetchMovies()
+  }, [currentPage, genresIds]);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -95,4 +94,4 @@ const AllMovies = () => {
     </>
   );
 };
-export default memo(AllMovies);
+export default AllMovies;

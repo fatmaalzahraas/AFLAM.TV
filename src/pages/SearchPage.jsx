@@ -12,23 +12,23 @@ const SearchPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(false);
-  const fetchResults = useCallback(async () => {
-    setLoading(true);
-    try {
-      const { data } = await axios.get(
-        `search/movie?api_key=${API_KEY}&language=en-US&page=${currentPage}&include_adult=false&query=${searchTerm}`
-      );
-      setMovies(data?.results);
-      setTotalPages(data?.total_pages);
-      setLoading(false);
-    } catch (err) {
-      setLoading(false);
-      console.log(err);
-    }
-  }, [searchTerm, currentPage]);
   useEffect(() => {
+    const fetchResults = async () => {
+      setLoading(true);
+      try {
+        const { data } = await axios.get(
+          `search/movie?api_key=${API_KEY}&language=en-US&page=${currentPage}&include_adult=false&query=${searchTerm}`
+        );
+        setMovies(data?.results);
+        setTotalPages(data?.total_pages);
+        setLoading(false);
+      } catch (err) {
+        setLoading(false);
+        console.log(err);
+      }
+    }
     fetchResults();
-  }, [fetchResults]);
+  }, [currentPage, searchTerm]);
   return (
     <PageTitle title="Search any movie you want">
       <div className="w-full bg-lightColor dark:bg-darkBlue searchPage-height">

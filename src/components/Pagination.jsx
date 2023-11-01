@@ -1,5 +1,6 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
-const Pagination = ({ currentPage, setCurrentPage, totalPages }) => {
+import { memo } from "react";
+const Pagination = memo(({ currentPage, setCurrentPage, totalPages }) => {
   const pages = [
     { page: currentPage },
     { page: currentPage + 1 },
@@ -13,6 +14,8 @@ const Pagination = ({ currentPage, setCurrentPage, totalPages }) => {
   const next = () => {
     if (currentPage < totalPages) setCurrentPage(++currentPage);
   };
+  console.log('pagination')
+  console.log('######################')
   return (  
       <div className="flex items-center justify-between xxs:px-2 px-4 py-[2.5rem] sm:px-6 bg-lightColor dark:bg-darkBlue">
       <div className="flex flex-1 items-center justify-center ">
@@ -56,6 +59,6 @@ const Pagination = ({ currentPage, setCurrentPage, totalPages }) => {
   
  
   );
-};
+});
 
 export default Pagination;

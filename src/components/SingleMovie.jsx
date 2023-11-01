@@ -6,11 +6,9 @@ import { images } from "../api";
 import { useNavigate } from "react-router-dom";
 import NoImage from "../assets/no-image01.jpg";
 import SavedMovie from "./SavedMovie";
-import { UserAuth } from "../context/authContext";
 import useFavoriteMovie from "../custom-hooks/useFavoriteMovie";
 const SingleMovie = ({ movie, styles }) => {
   const {favoriteMovie} = useFavoriteMovie(movie)
-  const { user } = UserAuth();
   const { like, myFavorites } = SavedMovie();
   const [isHover, setIsHover] = useState(false);
   const navigate = useNavigate();
@@ -41,6 +39,7 @@ const SingleMovie = ({ movie, styles }) => {
                 : NoImage
             }
             alt={movie?.title}
+            loading="lazy"
           />
         </div>
         <div className="group/item bg-blackColor/0 hover:bg-blackColor/60 transition-all duration-[0.5s] delay-[0.1s] w-full h-full absolute top-0 left-0 flex items-center justify-center gap-x-4">

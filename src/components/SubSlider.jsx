@@ -14,14 +14,15 @@ const SubSlider = ({ title, url }) => {
   const [isEnd, setIsEnd] = useState(false);
   const [isBegin, setIsBegin] = useState(true);
   useEffect(() => {
-    axios
-      .get(`movie/${url}?api_key=${API_KEY}&language=en-US&page=1`)
-      .then((res) => {
-        setMovies(res.data.results);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
+      const fetchMovies = async() => {
+        try {
+          const res = await axios.get(`movie/${url}?api_key=${API_KEY}&language=en-US&page=1`);
+          setMovies(res.data.results);
+        } catch(err) {
+          console.log(err.message);
+        }
+      }
+      fetchMovies()
   }, [url]);
   return (
     <div className="bg-lightColor dark:bg-darkBlue py-7">

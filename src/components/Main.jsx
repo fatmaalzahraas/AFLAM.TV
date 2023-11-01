@@ -52,6 +52,7 @@ const Main = () => {
                         className="w-full h-full object-cover"
                         src={`${images}original/${movie?.backdrop_path}`}
                         alt={movie?.title}
+                        loading="lazy"
                       />
                       <div className="absolute w-3/4 top-[35px] md:top-1/4 z-10 left-14 xxs:top-4 xxs:left-6">
                         <h2 className="text-lightColor text-xl md:text-2xl font-semibold mb-4 xxs:text-lg">
