@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, memo } from "react";
+import React, { useState, useEffect, memo } from "react";
 import { useLocation } from "react-router-dom";
 import axios, { API_KEY } from "../api";
 import SingleMovie from "../components/SingleMovie";

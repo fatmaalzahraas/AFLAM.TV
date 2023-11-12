@@ -5,6 +5,14 @@ import Pagination from "../components/Pagination";
 import PageTitle from "../components/PageTitle";
 import LoadingSkeleton from "../components/LoadingSkeleton";
 import SingleMovie from "../components/SingleMovie";
+const genresIDs = (specifiedGenres) => {
+  if (specifiedGenres.length < 1) {
+    return "";
+  } else {
+    const genreId = specifiedGenres?.map((genre) => genre.id);
+    return genreId.reduce((acc, cur) => acc + "," + cur);
+  }
+};
 const AllMovies = () => {
   const [genres, setGenres] = useState([]);
   const [movies, setMovies] = useState([]);
@@ -13,14 +21,7 @@ const AllMovies = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [err, setErr] = useState(false);
   const [loading, setLoading] = useState(false);
-  const genresIDs = (specifiedGenres) => {
-    if (specifiedGenres.length < 1) {
-      return "";
-    } else {
-      const genreId = specifiedGenres?.map((genre) => genre.id);
-      return genreId.reduce((acc, cur) => acc + "," + cur);
-    }
-  };
+  
   const genresIds = genresIDs(selectedGenres);
   useEffect(() => {
     const fetchMovies = async () => {

@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const PageTitle = ({ children, title }) => {
-  document.title = `AFLAM.TV | ${title ? title : "Watch Movies"}`;
+  useEffect(() => {
+    document.title = `AFLAM.TV | ${title ? title : "Watch Movies"}`;
+  }, [title])
   return <div>{children}</div>;
 };
 

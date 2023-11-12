@@ -14,8 +14,7 @@ const Pagination = memo(({ currentPage, setCurrentPage, totalPages }) => {
   const next = () => {
     if (currentPage < totalPages) setCurrentPage(++currentPage);
   };
-  console.log('pagination')
-  console.log('######################')
+
   return (  
       <div className="flex items-center justify-between xxs:px-2 px-4 py-[2.5rem] sm:px-6 bg-lightColor dark:bg-darkBlue">
       <div className="flex flex-1 items-center justify-center ">
@@ -36,7 +35,7 @@ const Pagination = memo(({ currentPage, setCurrentPage, totalPages }) => {
               <button
                 className={`relative inline-flex items-center xxs:px-3 px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:ring-gray-300 dark:bg-lightColor hover:text-darkBlue dark:hover:bg-gray-200 hover:bg-gray-100 focus:z-20 focus:outline-offset-0 ${
                   currentPage === p.page &&
-                  "bg-lightBlue dark:bg-gray-300 dark:text-darkBlue text-white ring-1 ring-lightBlue dark:ring-gray-200 "
+                  "bg-lightBlue dark:bg-lightBlue/95 dark:text-darkBlue text-white ring-1 ring-lightBlue dark:ring-gray-200 "
                 }`}
                 key={index}
                 onClick={() => setCurrentPage(p.page)}
